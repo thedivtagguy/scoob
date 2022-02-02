@@ -65,6 +65,7 @@ const cardOne = (sketch) => {
         count++;
       }
     }
+
     console.log(topMotives);
 
     // Draw a bar chart with the top 10 motives

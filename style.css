@@ -7,3 +7,11 @@ canvas {
   display: block;
 }
 
+/* Background image is pattern.png repeated all over */
+body {
+  background-image: url('./pattern.png');
+  background-repeat: repeat;
+  background-size: 20%;
+  /* Transparency */
+  background-color: rgba(0, 0, 0, 0.5);
+}
