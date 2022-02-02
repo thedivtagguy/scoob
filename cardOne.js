@@ -14,20 +14,26 @@ const cardOne = (sketch) => {
   };
 
   sketch.draw = () => {
-    sketch.background(220);
-    // All dates are stored in date_aired column of the csv file
-    // Convert it to DATE type and keep only the year
-    data.getColumn("date_aired").map((d) => {
-      const date = new Date(d);
-      const year = date.getFullYear();
-      return year;
-    });
+    // Title on top of the chart
+    sketch.push();
+    sketch.textSize(40);
+    sketch.fill('#F18F01')
+    // Font Family: 'Arial'
+    sketch.textFont('Bangers');
+    // Spacing between the letters
+    sketch.textLeading(60);
+    sketch.text("TOP CRIMINAL MOTIVES", sketch.width / 4, 50);
+    sketch.pop();
+
+
+
     // Create a new array called years
     const years = data.getColumn("date_aired").map((d) => {
       const date = new Date(d);
       const year = date.getFullYear();
       return year;
     });
+
     console.log(years);
     // Draw an X axis with the years as labels
     sketch.stroke(0);
@@ -37,30 +43,56 @@ const cardOne = (sketch) => {
       return d;
     });
 
-    const motivesCount = {};
-    for (let i = 0; i < years.length; i++) {
-      const year = years[i];
-      const motive = motives[i];
-      if (!motivesCount[year]) {
-        motivesCount[year] = {};
+    // Create a JSON object called motives
+    // Each item in JSON object is anothe JSON object of year, and count of motives
+    const motivesObj = {};
+    for (let i = 0; i < motives.length; i++) {
+      if (motivesObj[motives[i]]) {
+        motivesObj[motives[i]]++;
+      } else {
+        motivesObj[motives[i]] = 1;
       }
-      if (!motivesCount[year][motive]) {
-        motivesCount[year][motive] = 0;
-      }
-      motivesCount[year][motive]++;
     }
-    console.log(motivesCount);
+    // Remove NULL
+    delete motivesObj["NULL"];
+    console.log(motivesObj);
+    // Keep only the top 10 motives in the object
+    const topMotives = {};
+    let count = 0;
+    for (const motive in motivesObj) {
+      if (count < 10) {
+        topMotives[motive] = motivesObj[motive];
+        count++;
+      }
+    }
+    console.log(topMotives);
 
-    // Print a total of 10 labels on the X axis
-    // Starting from 1969 and ending with 2020 from the years in motivesCount
-    // The labels will be spaced evenly
-    for (let i = 1969; i <= 2020; i += 10) {
-      sketch.text(
-        i,
-        sketch.map(i, 1969, 2020, 0, sketch.width - 150),
-        sketch.height - 10
+    // Draw a bar chart with the top 10 motives
+
+    Object.keys(topMotives).forEach((motive, index) => {
+      sketch.push();
+      sketch.textSize(8);
+      sketch.textAlign(sketch.CENTER);
+      sketch.textStyle(sketch.BOLD);
+      sketch.fill("#EFF1F3");
+      sketch.text(motive, index * 63 + 42, sketch.height - 20);
+      sketch.pop();
+      sketch.fill("#F18F01");
+      sketch.rect(
+        index * 63 + 20,
+        sketch.height - 50 - topMotives[motive],
+        50,
+        topMotives[motive]
       );
-    }
+      // Add a label of the count above the bar
+      sketch.textSize(12);
+      sketch.fill("#EFF1F3");
+      sketch.text(
+        topMotives[motive],
+        index * 63 + 36,
+        sketch.height - 50 - topMotives[motive] - 10
+      );
+    });
   };
 };
 let myp5 = new p5(cardOne);
