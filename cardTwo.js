@@ -75,7 +75,7 @@ const cardTwo = (sketch) => {
     sketch.fill("#F18F01");
     sketch.textFont("Bangers");
     sketch.textLeading(60);
-    sketch.text("WHO GIVES THE SNACKS?", sketch.width / 2.1, 50);
+    sketch.text("Who gives the snacks?", sketch.width / 2.1, 50);
     sketch.pop();
     sketch.push();
     sketch.fill("#F18F01");
