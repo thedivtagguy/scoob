@@ -7,7 +7,7 @@ const cardThree = (sketch) => {
 
   const imdb_score = [];
   const rows = 8;
-  const cols = 45;
+  const cols = 35;
 
   sketch.setup = () => {
     // Get div width and height
@@ -59,12 +59,7 @@ const cardThree = (sketch) => {
       // Draw a grid of squares in rows and cols
       const x = (i % cols) * (sketch.width / cols);
       const y = Math.floor(i / cols) * (sketch.height / rows) + 250;
-      const w = sketch.width / cols;
-      const h = sketch.height / rows;
-      // If the score is between 0 and 3, use the first color
-      // If the score is between 3 and 6, use the second color
-      // If the score is between 6 and 9, use the third color
-      // If the score is between 9 and 12, use the fourth color
+
       const score = imdb_score[i].score;
       if (score >= 0 && score < 1) {
         sketch.fill(colors[0]);
@@ -89,14 +84,22 @@ const cardThree = (sketch) => {
       }
       
       sketch.noStroke();
-      sketch.rect(x, y/3.8, 11, 11);
-      // Write the year in the top left corner of each square
+      // If it is a new year, draw a rectangle with a different color
+      // If not, just draw a rectangle
+      if(i != 0 && imdb_score[i].year !== imdb_score[i-1].year) {
+        sketch.rect(x, y/3.2, 16, 16);
+        sketch.push();
+        sketch.fill('#fff');
+        sketch.textSize(6);
+        sketch.text(imdb_score[i].year, x+2,y/3.13);
+        sketch.pop();
+      } else {
+        sketch.rect(x, y/3.2, 16, 16);
+      }
       sketch.push();
       sketch.fill(0);
       sketch.textSize(12);
-      sketch.pop();
-     
-
+      sketch.pop();         
     }
   };
 };
