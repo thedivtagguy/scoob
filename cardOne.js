@@ -17,15 +17,11 @@ const cardOne = (sketch) => {
     // Title on top of the chart
     sketch.push();
     sketch.textSize(40);
-    sketch.fill('#F18F01')
-    // Font Family: 'Arial'
-    sketch.textFont('Bangers');
-    // Spacing between the letters
+    sketch.fill("#F18F01");
+    sketch.textFont("Bangers");
     sketch.textLeading(60);
     sketch.text("TOP CRIMINAL MOTIVES", sketch.width / 4, 50);
     sketch.pop();
-
-
 
     // Create a new array called years
     const years = data.getColumn("date_aired").map((d) => {
@@ -44,7 +40,6 @@ const cardOne = (sketch) => {
     });
 
     // Create a JSON object called motives
-    // Each item in JSON object is anothe JSON object of year, and count of motives
     const motivesObj = {};
     for (let i = 0; i < motives.length; i++) {
       if (motivesObj[motives[i]]) {
