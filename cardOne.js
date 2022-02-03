@@ -5,6 +5,7 @@ const cardOne = (sketch) => {
   sketch.preload = () => {
     // Load data from the CSV file
     data = sketch.loadTable("./scoobydoo.csv", "csv", "header");
+    monster = sketch.loadImage("./monster.png");
   };
 
   sketch.setup = () => {
@@ -92,7 +93,7 @@ const cardOne = (sketch) => {
       sketch.textSize(9);
       sketch.text('0', 278, 390);
       sketch.text('175', 640, 390);
-
+      sketch.image(monster, 400, 170, 200, 200);
 
     }
 

@@ -102,7 +102,7 @@ const cardThree = (sketch) => {
     sketch.text('Fred Jones', 0, 150);
     sketch.pop();
     drawPlot("Fred Jones");
-    sketch.translate(10, 250);
+    sketch.translate(0, 250);
     sketch.push();
     sketch.fill('#F18F01');
     sketch.noStroke();
