@@ -37,7 +37,6 @@ const cardTwo = (sketch) => {
     for (let i = 0; i < columnNames.length; i++) {
       for (let j = 0; j < data.getRowCount(); j++) {
         if (data.getString(j, columnNames[i]) === "TRUE") {
-          console.log(data.getString(j, columnNames[i]));
           if (columnNames[i] === "snack_fred") {
             counts.fredCount++;
           }
@@ -66,13 +65,11 @@ const cardTwo = (sketch) => {
       return b[1] - a[1];
     }
     );
-    console.log(countSnacks);
 
   };
 
   sketch.draw = () => {
     // Title on top of the chart
-    console.log(counts);
     sketch.push();
     sketch.textSize(40);
     sketch.fill("#F18F01");
