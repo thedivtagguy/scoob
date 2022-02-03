@@ -62,33 +62,33 @@ const cardOne = (sketch) => {
     }
 
     console.log(topMotives);
+    // Sort JSON object by value in descending order 
+    // Draw a bar chart with the top 10 motives
+    console.log(typeof topMotives);
+    let sorted = [];
+    for (const motive in topMotives) {
+      sorted.push([motive, topMotives[motive]]);
+    }
+    sorted.sort((a, b) => {
+      return b[1] - a[1];
+    });
+    console.log(sorted);
 
     // Draw a bar chart with the top 10 motives
+ 
 
-    Object.keys(topMotives).forEach((motive, index) => {
+    for(let i = 0; i < sorted.length; i++) {     
       sketch.push();
-      sketch.textSize(8);
-      sketch.textAlign(sketch.CENTER);
-      sketch.textStyle(sketch.BOLD);
-      sketch.fill("#EFF1F3");
-      sketch.text(motive, index * 63 + 42, sketch.height - 20);
-      sketch.pop();
       sketch.fill("#F18F01");
-      sketch.rect(
-        index * 63 + 20,
-        sketch.height - 50 - topMotives[motive],
-        50,
-        topMotives[motive]
-      );
-      // Add a label of the count above the bar
-      sketch.textSize(12);
-      sketch.fill("#EFF1F3");
-      sketch.text(
-        topMotives[motive],
-        index * 63 + 36,
-        sketch.height - 50 - topMotives[motive] - 10
-      );
-    });
+      sketch.translate(60, 100 + i * 30);
+      sketch.text(sorted[i][0], 0, 10);
+      sketch.text(sorted[i][1], sketch.width / 3.7, 10);
+      // Draw a bar based on the frequency 
+      sketch.fill("#F18F01");
+      sketch.rect(sketch.width / 3, 0, sorted[i][1] * 2, 20);
+      sketch.pop();
+    }
+
   };
 };
 let myp5 = new p5(cardOne);
