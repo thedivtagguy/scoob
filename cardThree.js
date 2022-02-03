@@ -28,9 +28,8 @@ const cardThree = (sketch) => {
     sketch.pop();
     sketch.push();
     sketch.fill("#F18F01");
-    sketch.textAlign(sketch.LEFT);
-    sketch.text("Who catches the criminals and who gets captured? \nSpoiler Alert: Daphnie isn't doing so well.", 560, 30);
-    sketch.text("Each slice of area represents cumalative count from the last 50 episodes.", 860, 30);
+    sketch.textAlign(sketch.RIGHT);
+    sketch.text("Who catches the criminals and who gets captured? \nEach slice of area represents cumalative count from the last 50 episodes.\nSpoiler Alert: Daphnie has never done so well.", 1300, 30);
     sketch.pop();
   };
 
@@ -70,7 +69,7 @@ const cardThree = (sketch) => {
       sketch.noStroke();
       sketch.text('0', -10, sketch.height/3.55);
       sketch.text('20', -18, sketch.height/4.45);
-      sketch.text('20', -18, sketch.height/2.86);
+      sketch.text('20', -18, sketch.height/2.9);
       sketch.pop();
       sketch.push();
       sketch.textSize(9);

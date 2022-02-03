@@ -115,6 +115,8 @@ const cardTwo = (sketch) => {
       sketch.push();
       sketch.strokeWeight(0.1);
       sketch.fill("#F18F01");
+      sketch.stroke("#F18F01");
+      sketch.line(sketch.width/4, 30, sketch.width/4, 380);
       sketch.ellipse(sketch.width / 4, 70*i + 70, countSnacks[i][1] * 1.3, countSnacks[i][1] * 1.3);
       sketch.text(countSnacks[i][1] + " times", 218, 70*i + 72);
       sketch.pop();
