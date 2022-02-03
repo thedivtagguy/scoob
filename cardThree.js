@@ -29,36 +29,44 @@ const cardThree = (sketch) => {
     sketch.pop();
   };
 
- let maxNegativeHeight = sketch.height - 120;
- let maxPositiveHeight = sketch.height/4;
-
-
-  const mapToGraph = (value, oldXPos, maxHeight, minHeight) => {
-    const newXPos = oldXPos + 10;
-    const newYPos = sketch.map(value, 0, maxHeight, minHeight, maxHeight);
-    return [newXPos, newYPos];
-  };
+ const drawPlot = (characterName) => {
   let xStartingPoint = 0;
-  sketch.draw = () => {
-    for(let i = 0; i < data.getRowCount(); i++) {
-      let character = data.getString(i, "character");
-      if(character === 'Daphne Blake'){
-        console.log(character);
-        // Draw a horizontal line in the middle of the canvas
-        sketch.stroke('#F18F01');
-        sketch.line(xStartingPoint, sketch.height/4, sketch.width, sketch.height/4);
-        sketch.line(xStartingPoint, sketch.height - 120, sketch.width, sketch.height - 120);
-        sketch.line(0, sketch.height/2, sketch.width, sketch.height/2);
-        // Plot the data points
-        let value = data.getNum(i, "roll_value");
-        let [newX, newY] = mapToGraph(value, xStartingPoint, maxNegativeHeight, maxPositiveHeight);
-        console.log(newX, newY);
+
+  for(let i = 0; i < data.getRowCount(); i++) {
+    let character = data.getString(i, "character");
+    if(character === characterName) {
+      console.log(characterName);
+      // Draw a horizontal line in the middle of the canvas
+      sketch.stroke('#F18F01');
+     // Draw bars that correspond to the value
+     // If it is negative, draw a bar with a negative height
+      // If it is positive, draw a bar with a positive height
+      let height = data.getNum(i, "roll_value");
+      if(height < 0){
         sketch.stroke('#F18F01');
         sketch.strokeWeight(0.5);
-        sketch.point(newX, newY);
+        sketch.line(xStartingPoint, 250, xStartingPoint, sketch.height - 600 - height);
+        xStartingPoint += 1;
       }
+      if(height > 0){
+        sketch.stroke('#F18F01');
+        sketch.strokeWeight(0.5);
+        sketch.line(xStartingPoint, 250, xStartingPoint , 200 + height);
+        xStartingPoint += 1;
+      }
+      sketch.line(0, sketch.height/3.6, xStartingPoint, sketch.height/3.6);
+
     }
-  
+  }
+ }
+  sketch.draw = () => {
+    sketch.translate(100, 0);
+    drawPlot("Daphne Blake");
+    // Move the next graph to the right
+    sketch.translate(600, 0);
+    drawPlot("Fred Jones");
+    sketch.translate(10, 250);
+    drawPlot("Shaggy Rogers");
    
   };
 };
