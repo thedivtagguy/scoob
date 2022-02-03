@@ -20,8 +20,11 @@ const cardOne = (sketch) => {
     sketch.fill("#F18F01");
     sketch.textFont("Bangers");
     sketch.textLeading(60);
-    sketch.text("TOP CRIMINAL MOTIVES", sketch.width / 4, 50);
+    sketch.text("TOP 10 CRIMINAL MOTIVES", sketch.width / 4, 50);
     sketch.pop();
+    sketch.fill("#F18F01");
+
+    sketch.text("What are the top motives each criminal reveals when they are unmasked?", sketch.width/4.8, 75);
 
     // Create a new array called years
     const years = data.getColumn("date_aired").map((d) => {
@@ -30,7 +33,6 @@ const cardOne = (sketch) => {
       return year;
     });
 
-    console.log(years);
     // Draw an X axis with the years as labels
     sketch.stroke(0);
     sketch.strokeWeight(0.1);
@@ -50,7 +52,6 @@ const cardOne = (sketch) => {
     }
     // Remove NULL
     delete motivesObj["NULL"];
-    console.log(motivesObj);
     // Keep only the top 10 motives in the object
     const topMotives = {};
     let count = 0;
@@ -61,10 +62,8 @@ const cardOne = (sketch) => {
       }
     }
 
-    console.log(topMotives);
     // Sort JSON object by value in descending order 
     // Draw a bar chart with the top 10 motives
-    console.log(typeof topMotives);
     let sorted = [];
     for (const motive in topMotives) {
       sorted.push([motive, topMotives[motive]]);
@@ -72,7 +71,6 @@ const cardOne = (sketch) => {
     sorted.sort((a, b) => {
       return b[1] - a[1];
     });
-    console.log(sorted);
 
     // Draw a bar chart with the top 10 motives
  
