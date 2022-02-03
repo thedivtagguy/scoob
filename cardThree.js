@@ -2,7 +2,11 @@ const cardThree = (sketch) => {
   sketch.preload = () => {
     // Load data from the CSV file
     data = sketch.loadTable("./caught.csv", "csv", "header");
-    
+    fred = sketch.loadImage("./pfp/fred.png");
+    velma = sketch.loadImage("./pfp/velma.png");
+    daphne = sketch.loadImage("./pfp/daphne.png");
+    shaggy = sketch.loadImage("./pfp/shaggy.png");
+    scooby = sketch.loadImage("./pfp/scooby.png");
   };
 
 
@@ -44,16 +48,18 @@ const cardThree = (sketch) => {
       let height = data.getNum(i, "roll_value");
       if(height < 0){
         sketch.stroke('#F18F01');
-        sketch.strokeWeight(0.5);
-        sketch.line(xStartingPoint, 250, xStartingPoint, sketch.height - 600 - height);
+        sketch.strokeWeight(0.8);
+        sketch.line(xStartingPoint, 250, xStartingPoint, sketch.height - 660 - height*3);
         xStartingPoint += 1;
       }
       if(height > 0){
         sketch.stroke('#F18F01');
-        sketch.strokeWeight(0.5);
-        sketch.line(xStartingPoint, 250, xStartingPoint , 200 + height);
+        sketch.strokeWeight(0.8);
+        sketch.line(xStartingPoint, 250, xStartingPoint , 230 + height*3);
         xStartingPoint += 1;
       }
+      sketch.stroke(255,255,255);
+      sketch.strokeWeight(1);
       sketch.line(0, sketch.height/3.6, xStartingPoint, sketch.height/3.6);
 
     }
@@ -61,13 +67,55 @@ const cardThree = (sketch) => {
  }
   sketch.draw = () => {
     sketch.translate(100, 0);
+    sketch.push();
+    sketch.fill('#F18F01');
+    sketch.textSize(20);
+    sketch.textFont("Bangers");
+    sketch.text('Daphne Blake', 0, 150);
+    sketch.image(daphne, 120, 120, 50, 50);
+    sketch.pop();
     drawPlot("Daphne Blake");
-    // Move the next graph to the right
     sketch.translate(600, 0);
+    sketch.push();
+    sketch.fill('#F18F01');
+    sketch.noStroke();
+    sketch.textSize(20);
+    sketch.textFont("Bangers");
+    sketch.image(fred, 90, 118, 45, 50);
+    sketch.text('Fred Jones', 0, 150);
+    sketch.pop();
     drawPlot("Fred Jones");
     sketch.translate(10, 250);
+    sketch.push();
+    sketch.fill('#F18F01');
+    sketch.noStroke();
+    sketch.textSize(20);
+    sketch.textFont("Bangers");
+    sketch.image(shaggy, 125, 120, 45, 50);
+    sketch.text('Shaggy Rogers', 0, 150);
+    sketch.pop();
     drawPlot("Shaggy Rogers");
-   
+    sketch.translate(-600, 0);
+    sketch.push();
+    sketch.fill('#F18F01');
+    sketch.noStroke();
+    sketch.textSize(20);
+    sketch.textFont("Bangers");
+    sketch.image(velma, 115, 120, 50, 50);
+    sketch.text('Velma Dinkley', 0, 150);
+    sketch.pop();
+    drawPlot("Velma Dinkley");
+    sketch.translate(300, 250);
+    sketch.push();
+    sketch.fill('#F18F01');
+    sketch.noStroke();
+    sketch.textSize(20);
+    sketch.textFont("Bangers");
+    sketch.image(scooby, 100, 115, 32, 50);
+    sketch.text('Scooby Doo', 0, 150);
+    sketch.pop();
+    drawPlot("Scooby Doo");
+
   };
 };
 let myp35 = new p5(cardThree);
