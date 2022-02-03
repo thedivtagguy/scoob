@@ -23,13 +23,14 @@ const cardThree = (sketch) => {
     sketch.fill("#F18F01");
     sketch.textFont("Bangers");
     sketch.textLeading(60);
-    sketch.textAlign(sketch.CENTER);
-    sketch.text("The Catchers and the Captured", sketch.width / 2, 50);
+    sketch.textAlign(sketch.LEFT);
+    sketch.text("The Catchers and the Captured", 100, 50);
     sketch.pop();
     sketch.push();
     sketch.fill("#F18F01");
-    sketch.textAlign(sketch.CENTER);
-    sketch.text("Who catches the criminals and who gets captured? \n Spoiler Alert: Daphnie isn't doing so well.", sketch.width/2, 80);
+    sketch.textAlign(sketch.LEFT);
+    sketch.text("Who catches the criminals and who gets captured? \nSpoiler Alert: Daphnie isn't doing so well.", 560, 30);
+    sketch.text("Each slice of area represents cumalative count from the last 50 episodes.", 860, 30);
     sketch.pop();
   };
 
@@ -49,7 +50,7 @@ const cardThree = (sketch) => {
       if(height < 0){
         sketch.stroke('#F18F01');
         sketch.strokeWeight(0.8);
-        sketch.line(xStartingPoint, 250, xStartingPoint, sketch.height - 660 - height*3);
+        sketch.line(xStartingPoint, 250, xStartingPoint, sketch.height - 660 - height*4);
         xStartingPoint += 1;
       }
       if(height > 0){
@@ -58,10 +59,27 @@ const cardThree = (sketch) => {
         sketch.line(xStartingPoint, 250, xStartingPoint , 230 + height*3);
         xStartingPoint += 1;
       }
-      sketch.stroke(255,255,255);
+      sketch.stroke('#8F5600');
       sketch.strokeWeight(1);
       sketch.line(0, sketch.height/3.6, xStartingPoint, sketch.height/3.6);
-
+      // Draw a line on the left side of the canvas
+      sketch.line(0, sketch.height/4.6, 0, sketch.height - 590);
+      sketch.push();
+      sketch.textSize(12);
+      sketch.fill("#F18F01");
+      sketch.noStroke();
+      sketch.text('0', -10, sketch.height/3.55);
+      sketch.text('20', -18, sketch.height/4.45);
+      sketch.text('20', -18, sketch.height/2.86);
+      sketch.pop();
+      sketch.push();
+      sketch.textSize(9);
+      sketch.textLeading(21);
+      sketch.fill("#F18F01");
+      sketch.noStroke();
+      sketch.text('Got Caught', 10, sketch.height/2.86);
+      sketch.text('Captures', 10, sketch.height/4.45);
+      sketch.pop();
     }
   }
  }
