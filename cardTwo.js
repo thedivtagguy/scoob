@@ -77,11 +77,16 @@ const cardTwo = (sketch) => {
     sketch.textLeading(60);
     sketch.text("WHO GIVES THE SNACKS?", sketch.width / 2.1, 50);
     sketch.pop();
+    sketch.push();
+    sketch.fill("#F18F01");
+    sketch.textAlign(sketch.RIGHT);
+    sketch.text("Scooby will do anything for a Scooby snack. \nWho is his best friend when it comes to giving him one?", sketch.width - 20, 80);
+    sketch.pop();
     // Add image
     sketch.image(
       image,
       sketch.width / 2.2,
-      sketch.height / 5.5,
+      sketch.height / 2.8,
       sketch.width / 2,
       sketch.height
     );

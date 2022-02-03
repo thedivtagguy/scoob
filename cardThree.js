@@ -56,50 +56,13 @@ const cardThree = (sketch) => {
     // Colors are defined below: 
     const colors = ['#d7b8f5','#C294F0', '#AD70EB', '#994CE6', '#8529E0', '#701CC4', '#5C17A1', '#47127D', '#330D59']
     for(let i = 0; i < imdb_score.length; i++) {
-      // Draw a grid of squares in rows and cols
-      const x = (i % cols) * (sketch.width / cols);
-      const y = Math.floor(i / cols) * (sketch.height / rows) + 250;
-
-      const score = imdb_score[i].score;
-      if (score >= 0 && score < 1) {
-        sketch.fill(colors[0]);
-      } else if (score >= 1 && score < 2) {
-        sketch.fill(colors[1]);
-      } else if (score >= 2 && score < 3) {
-        sketch.fill(colors[2]);
-      } else if (score >= 3 && score < 4) {
-        sketch.fill(colors[3]); 
-      } else if (score >= 4 && score < 5) {
-        sketch.fill(colors[4]);
-      } else if (score >= 5 && score < 6) {
-        sketch.fill(colors[5]);
-      } else if (score >= 6 && score < 7) {
-        sketch.fill(colors[6]);
-      } else if (score >= 7 && score < 8) {
-        sketch.fill(colors[7]);
-      } else if (score >= 8 && score < 9) {
-        sketch.fill(colors[8]);
-      } else if (score >= 9 && score < 10) {
-        sketch.fill(colors[9]);
-      }
-      
-      sketch.noStroke();
-      // If it is a new year, draw a rectangle with a different color
-      // If not, just draw a rectangle
-      if(i != 0 && imdb_score[i].year !== imdb_score[i-1].year) {
-        sketch.rect(x, y/3.2, 16, 16);
+      // For each decade, draw two columns of squares with colors that
+      if(imdb_score[i]. year <= 1970 && imdb_score[i].year >=1980){
         sketch.push();
-        sketch.fill('#fff');
-        sketch.textSize(6);
-        sketch.text(imdb_score[i].year, x+2,y/3.13);
+        sketch.fill(colors[0]);
+        sketch.rect(sketch.width / 3, sketch.height / 2, 21, 21);
         sketch.pop();
-      } else {
-        sketch.rect(x, y/3.2, 16, 16);
       }
-      sketch.push();
-      sketch.fill(0);
-      sketch.textSize(12);
-      sketch.pop();         
     }
   };
 };
