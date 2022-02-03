@@ -1,13 +1,11 @@
 const cardThree = (sketch) => {
   sketch.preload = () => {
     // Load data from the CSV file
-    data = sketch.loadTable("./scoobydoo.csv", "csv", "header");
+    data = sketch.loadTable("./caught.csv", "csv", "header");
     
   };
 
-  const imdb_score = [];
-  const rows = 8;
-  const cols = 35;
+
 
   sketch.setup = () => {
     // Get div width and height
@@ -15,55 +13,53 @@ const cardThree = (sketch) => {
     const divHeight = document.getElementById("card-3").clientHeight;
     const canvas = sketch.createCanvas(divWidth - 40, divHeight);
     canvas.parent("card-3");
-
-     // Create a new array called years
-     const years = data.getColumn("date_aired").map((d) => {
-      const date = new Date(d);
-      const year = date.getFullYear();
-      return year;
-    });
-
-    // Column names are date_aired and imdb
-    const imdb = data.getColumn("imdb");
-
-    // Create a new array called imdb_score for each year
-    for (let i = 0; i < years.length; i++) {
-      const year = years[i];
-      const score = imdb[i];
-      imdb_score.push({
-        year,
-        score,
-      });
-    }
-    console.log(imdb_score);
-    // Sort the array by year
-    imdb_score.sort((a, b) => {
-      return a.year - b.year;
-    }
-    );
+    sketch.noLoop();
     sketch.push();
     sketch.textSize(40);
     sketch.fill("#F18F01");
     sketch.textFont("Bangers");
     sketch.textLeading(60);
-    sketch.text("EPISODE RATINGS", sketch.width / 3, 30);
+    sketch.textAlign(sketch.CENTER);
+    sketch.text("The Catchers and the Captured", sketch.width / 2, 50);
+    sketch.pop();
+    sketch.push();
+    sketch.fill("#F18F01");
+    sketch.textAlign(sketch.CENTER);
+    sketch.text("Who catches the criminals and who gets captured? \n Spoiler Alert: Daphnie isn't doing so well.", sketch.width/2, 80);
     sketch.pop();
   };
 
-  sketch.draw = () => {
+ let maxNegativeHeight = sketch.height - 120;
+ let maxPositiveHeight = sketch.height/4;
 
-    // Create a heatmap using the imdb_score array
-    // Colors are defined below: 
-    const colors = ['#d7b8f5','#C294F0', '#AD70EB', '#994CE6', '#8529E0', '#701CC4', '#5C17A1', '#47127D', '#330D59']
-    for(let i = 0; i < imdb_score.length; i++) {
-      // For each decade, draw two columns of squares with colors that
-      if(imdb_score[i]. year <= 1970 && imdb_score[i].year >=1980){
-        sketch.push();
-        sketch.fill(colors[0]);
-        sketch.rect(sketch.width / 3, sketch.height / 2, 21, 21);
-        sketch.pop();
+
+  const mapToGraph = (value, oldXPos, maxHeight, minHeight) => {
+    const newXPos = oldXPos + 10;
+    const newYPos = sketch.map(value, 0, maxHeight, minHeight, maxHeight);
+    return [newXPos, newYPos];
+  };
+  let xStartingPoint = 0;
+  sketch.draw = () => {
+    for(let i = 0; i < data.getRowCount(); i++) {
+      let character = data.getString(i, "character");
+      if(character === 'Daphne Blake'){
+        console.log(character);
+        // Draw a horizontal line in the middle of the canvas
+        sketch.stroke('#F18F01');
+        sketch.line(xStartingPoint, sketch.height/4, sketch.width, sketch.height/4);
+        sketch.line(xStartingPoint, sketch.height - 120, sketch.width, sketch.height - 120);
+        sketch.line(0, sketch.height/2, sketch.width, sketch.height/2);
+        // Plot the data points
+        let value = data.getNum(i, "roll_value");
+        let [newX, newY] = mapToGraph(value, xStartingPoint, maxNegativeHeight, maxPositiveHeight);
+        console.log(newX, newY);
+        sketch.stroke('#F18F01');
+        sketch.strokeWeight(0.5);
+        sketch.point(newX, newY);
       }
     }
+  
+   
   };
 };
 let myp35 = new p5(cardThree);

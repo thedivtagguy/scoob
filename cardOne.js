@@ -24,7 +24,7 @@ const cardOne = (sketch) => {
     sketch.pop();
     sketch.fill("#F18F01");
 
-    sketch.text("What are the to 10 motives each criminal reveals when they are unmasked?", sketch.width/4.8, 60);
+    sketch.text("What are the top 10 motives each criminal reveals when they are unmasked?", sketch.width/4.8, 60);
 
     // Create a new array called years
     const years = data.getColumn("date_aired").map((d) => {
