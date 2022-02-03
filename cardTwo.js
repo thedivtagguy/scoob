@@ -83,8 +83,8 @@ const cardTwo = (sketch) => {
     // Add image
     sketch.image(
       image,
-      sketch.width / 2.5,
-      sketch.height / 2.5,
+      sketch.width / 2.2,
+      sketch.height / 5.5,
       sketch.width / 2,
       sketch.height
     );

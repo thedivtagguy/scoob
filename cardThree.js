@@ -1,4 +1,10 @@
 const cardThree = (sketch) => {
+  sketch.preload = () => {
+    // Load data from the CSV file
+    data = sketch.loadTable("./scoobydoo.csv", "csv", "header");
+  };
+
+  
   sketch.setup = () => {
     // Get div width and height
     const divWidth = document.getElementById("card-3").clientWidth;

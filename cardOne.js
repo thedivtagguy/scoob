@@ -20,11 +20,11 @@ const cardOne = (sketch) => {
     sketch.fill("#F18F01");
     sketch.textFont("Bangers");
     sketch.textLeading(60);
-    sketch.text("TOP 10 CRIMINAL MOTIVES", sketch.width / 4, 50);
+    sketch.text("TOP 10 CRIMINAL MOTIVES", sketch.width / 4, 40);
     sketch.pop();
     sketch.fill("#F18F01");
 
-    sketch.text("What are the top motives each criminal reveals when they are unmasked?", sketch.width/4.8, 75);
+    sketch.text("What are the top motives each criminal reveals when they are unmasked?", sketch.width/4.8, 60);
 
     // Create a new array called years
     const years = data.getColumn("date_aired").map((d) => {
@@ -78,13 +78,22 @@ const cardOne = (sketch) => {
     for(let i = 0; i < sorted.length; i++) {     
       sketch.push();
       sketch.fill("#F18F01");
-      sketch.translate(60, 100 + i * 30);
-      sketch.text(sorted[i][0], 0, 10);
-      sketch.text(sorted[i][1], sketch.width / 3.7, 10);
+      sketch.translate(60, 80 + i * 30);
+      sketch.textSize(15);
+      sketch.text(sorted[i][0], 0, 16);
+      sketch.text(sorted[i][1], sketch.width / 3.7, 16);
       // Draw a bar based on the frequency 
       sketch.fill("#F18F01");
       sketch.rect(sketch.width / 3, 0, sorted[i][1] * 2, 20);
       sketch.pop();
+      sketch.stroke("#F18F01");
+      sketch.line(278, 380, sketch.width , 380);
+      // Label the line with ticks of the counts
+      sketch.textSize(9);
+      sketch.text('0', 278, 390);
+      sketch.text('175', 640, 390);
+
+
     }
 
   };
