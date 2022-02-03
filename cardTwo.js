@@ -102,7 +102,7 @@ const cardTwo = (sketch) => {
         sketch.text("Velma", 50, 70*i + 70);
       }
       if(countSnacks[i][0] === "daphnieCount"){
-        sketch.text("Daphnie", 50, 70*i + 70);
+        sketch.text("Daphne", 50, 70*i + 70);
       }
       if(countSnacks[i][0] === "shaggyCount"){
         sketch.text("Shaggy", 50, 70*i + 70);
