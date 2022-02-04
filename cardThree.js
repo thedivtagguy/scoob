@@ -33,18 +33,16 @@ const cardThree = (sketch) => {
     sketch.pop();
   };
 
+
  const drawPlot = (characterName) => {
   let xStartingPoint = 0;
 
   for(let i = 0; i < data.getRowCount(); i++) {
     let character = data.getString(i, "character");
+    console.log(characterName);
     if(character === characterName) {
-      console.log(characterName);
-      // Draw a horizontal line in the middle of the canvas
       sketch.stroke('#F18F01');
-     // Draw bars that correspond to the value
-     // If it is negative, draw a bar with a negative height
-      // If it is positive, draw a bar with a positive height
+      // Calculate Height for the slice
       let height = data.getNum(i, "roll_value");
       if(height < 0){
         sketch.stroke('#F18F01');
@@ -58,17 +56,21 @@ const cardThree = (sketch) => {
         sketch.line(xStartingPoint, 250, xStartingPoint , 230 + height*3);
         xStartingPoint += 1;
       }
+
       sketch.stroke('#8F5600');
       sketch.strokeWeight(1);
-      sketch.line(0, sketch.height/3.6, xStartingPoint, sketch.height/3.6);
+      // Main Axis
+
+      sketch.line(0, sketch.height/3.6, xStartingPoint, sketch.height/3.6);      
       // Draw a line on the left side of the canvas
-      sketch.line(0, sketch.height/4.6, 0, sketch.height - 590);
+      sketch.line(0, sketch.height/4.8, 0, sketch.height/3);
+      // Axis Labels
       sketch.push();
       sketch.textSize(12);
       sketch.fill("#F18F01");
       sketch.noStroke();
       sketch.text('0', -10, sketch.height/3.55);
-      sketch.text('20', -18, sketch.height/4.45);
+      sketch.text('20', -18, sketch.height/4.6);
       sketch.text('20', -18, sketch.height/2.9);
       sketch.pop();
       sketch.push();
@@ -80,53 +82,65 @@ const cardThree = (sketch) => {
       sketch.text('Captures', 10, sketch.height/4.45);
       sketch.pop();
     }
+    
   }
  }
   sketch.draw = () => {
-    sketch.translate(100, 0);
+
+    // Legend
     sketch.push();
+    sketch.textSize(12);
+    sketch.fill("#F18F01");
+    sketch.noStroke();
+    sketch.textAlign(sketch.CENTER);
+    sketch.text('— Episodes from 0 to 603 →', sketch.width/2, 100);
+    // Rectangle around the legend
+    sketch.pop();
+
+    sketch.push();
+    sketch.noFill();
+    sketch.stroke('#F18F01');
+    sketch.rect(sketch.width/2 - 100, 80, 200, 30);
+    sketch.pop();
+
     sketch.fill('#F18F01');
+    sketch.noStroke();
     sketch.textSize(20);
+    ////// Daphne Blake //////
+    sketch.translate(120, 30);
+    sketch.push();
     sketch.textFont("Bangers");
     sketch.text('Daphne Blake', 0, 150);
     sketch.image(daphne, 120, 120, 50, 50);
     sketch.pop();
     drawPlot("Daphne Blake");
+    ////// Fred Jones //////
     sketch.translate(600, 0);
     sketch.push();
-    sketch.fill('#F18F01');
-    sketch.noStroke();
-    sketch.textSize(20);
     sketch.textFont("Bangers");
     sketch.image(fred, 90, 118, 45, 50);
     sketch.text('Fred Jones', 0, 150);
     sketch.pop();
     drawPlot("Fred Jones");
+    ////// Shaggy Rogers //////
     sketch.translate(0, 250);
     sketch.push();
-    sketch.fill('#F18F01');
-    sketch.noStroke();
-    sketch.textSize(20);
     sketch.textFont("Bangers");
     sketch.image(shaggy, 125, 120, 45, 50);
     sketch.text('Shaggy Rogers', 0, 150);
     sketch.pop();
     drawPlot("Shaggy Rogers");
+    ////// Velma Dinkley //////
     sketch.translate(-600, 0);
     sketch.push();
-    sketch.fill('#F18F01');
-    sketch.noStroke();
-    sketch.textSize(20);
     sketch.textFont("Bangers");
     sketch.image(velma, 115, 120, 50, 50);
     sketch.text('Velma Dinkley', 0, 150);
     sketch.pop();
     drawPlot("Velma Dinkley");
+    ////// Scooby Doo //////
     sketch.translate(300, 250);
     sketch.push();
-    sketch.fill('#F18F01');
-    sketch.noStroke();
-    sketch.textSize(20);
     sketch.textFont("Bangers");
     sketch.image(scooby, 100, 115, 32, 50);
     sketch.text('Scooby Doo', 0, 150);
