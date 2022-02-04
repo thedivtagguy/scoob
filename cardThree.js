@@ -29,7 +29,7 @@ const cardThree = (sketch) => {
     sketch.push();
     sketch.fill("#F18F01");
     sketch.textAlign(sketch.RIGHT);
-    sketch.text("Who catches the criminals and who gets captured? \nEach slice of area represents cumulative count from the last 50 episodes.\nSpoiler Alert: Daphnie has never done so well.", 1300, 30);
+    sketch.text("Who catches the criminals and who gets captured? \nEach point represents cumulative count from the last 50 episodes.\nSpoiler Alert: Daphnie has never done so well.", 1300, 30);
     sketch.pop();
   };
 
