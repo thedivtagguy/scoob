@@ -39,7 +39,6 @@ const cardThree = (sketch) => {
 
   for(let i = 0; i < data.getRowCount(); i++) {
     let character = data.getString(i, "character");
-    console.log(characterName);
     if(character === characterName) {
       sketch.stroke('#F18F01');
       // Calculate Height for the slice
@@ -47,13 +46,13 @@ const cardThree = (sketch) => {
       if(height < 0){
         sketch.stroke('#F18F01');
         sketch.strokeWeight(0.8);
-        sketch.line(xStartingPoint, 250, xStartingPoint, sketch.height - 660 - height*4);
+        sketch.line(xStartingPoint, 250, xStartingPoint, sketch.height  - height*2 - 640);
         xStartingPoint += 1;
       }
       if(height > 0){
         sketch.stroke('#F18F01');
         sketch.strokeWeight(0.8);
-        sketch.line(xStartingPoint, 250, xStartingPoint , 230 + height*3);
+        sketch.line(xStartingPoint, 250, xStartingPoint ,  height*2 + 230);
         xStartingPoint += 1;
       }
 
