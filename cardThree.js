@@ -78,8 +78,8 @@ const cardThree = (sketch) => {
       sketch.textLeading(21);
       sketch.fill("#F18F01");
       sketch.noStroke();
-      sketch.text('Got Caught', 10, sketch.height/2.86);
-      sketch.text('Captures', 10, sketch.height/4.45);
+      sketch.text('Got Caught', 10, sketch.height/2.9);
+      sketch.text('Captures', 10, sketch.height/4.7);
       sketch.pop();
     }
     
