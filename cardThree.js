@@ -93,7 +93,7 @@ const cardThree = (sketch) => {
     sketch.fill("#F18F01");
     sketch.noStroke();
     sketch.textAlign(sketch.CENTER);
-    sketch.text('— Episodes from 0 to 603 →', sketch.width/2, 100);
+    sketch.text('— Episodes 0 to 603 →', sketch.width/2, 100);
     // Rectangle around the legend
     sketch.pop();
 
